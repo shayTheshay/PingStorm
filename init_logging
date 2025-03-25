@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function PingStormLog () {
+    case $1 in
+    1 )
+        logLevel="INFO" ;;
+    2 )
+        logLevel="WARNING" ;;
+    3 )
+        logLevel="ERROR" ;;
+    * )
+        logLevel="" ;;
+    esac
+    echo "["$logLevel"] "$(date +"%m/%d/%Y %T")" Script "$(basename "$0")" issued "$2" to target "$3
+}
