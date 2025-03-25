@@ -11,5 +11,10 @@ function PingStormLog () {
     * )
         logLevel="" ;;
     esac
-    echo "["$logLevel"] "$(date +"%m/%d/%Y %T")" Script "$(basename "$0")" issued "$2" to target "$3
+    if [ -d LogDir ]; then
+        :
+        else
+            mkdir LogDir
+    fi
+    echo "["$logLevel"] "$(date +"%m/%d/%Y %T")" Script "$(basename "$0")" issued "$2" to target "$3 >> LogDir/PingStorm.log
 }
