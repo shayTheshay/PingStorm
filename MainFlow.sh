@@ -19,24 +19,30 @@ read flow_option
 case $flow_option in
  1 )
     if [[ `ps -ef | grep PingStormService.sh | grep -v grep | wc -l` == 0 ]]; then
-        `./PingStormService.sh &`
+        ./PingStormService.sh &
         echo "PingStorm batch service started."
     fi ; read ;;
  2 )
-    while read -r process_id; do
+    keep_process_id="" ; while read -r process_id; do
+    if [[ -n $process_id ]]; then
+        keep_process_id=$process_id
         echo "Terminating PingStorm service with PID "$process_id
         kill $process_id
-    done <<< `ps -ef | grep PingStormService.sh | grep -v grep | awk '{print $2}'` ; read ;;
+    fi 
+    done <<< `ps -ef | grep PingStormService.sh | grep -v grep | awk '{print $2}'` ;
+    if [[ !( -n $keep_process_id ) ]]; then
+        echo "None is running. "
+    fi ; read ;;
  3 )
-    echo "Following is list of PingStorm manager processes currently running" ;
-    while read -r process_id; do
+    echo "Following is list of PingStorm manager processes currently running:" ;
+    keep_process_id="" ; while read -r process_id; do
     if [[ -n $process_id ]]; then
+        keep_process_id=$process_id
         echo "A PingStorm service is running with PID "$process_id
     fi
-    done <<< `ps -ef | grep PingStormService.sh | grep -v grep | awk '{print $2}'` ; 
-    if [[ -n $process_id ]]; then
-        :
-        else echo "None is running."
+    done <<< `ps -ef | grep PingStormService.sh | grep -v grep | awk '{print $2}'` ;
+    if [[ !( -n $keep_process_id ) ]]; then
+        echo "None is running. "
     fi ; read ;;
  4 )
     echo "Latest PingStorm service operations from log:" ; \
