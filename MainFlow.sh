@@ -40,7 +40,7 @@ case $flow_option in
     fi ; read ;;
  4 )
     echo "Latest PingStorm service operations from log:" ; \
-    tail -10 ./LogDir/PingStorm.log ;;
+    tail -10 ./LogDir/PingStorm.log ; read ;;
  0 )
     exit 0 ;;
 * )
