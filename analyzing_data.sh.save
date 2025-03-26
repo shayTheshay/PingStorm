@@ -7,4 +7,5 @@ echo "fastest server :" "$fastest_service"
 #show the slowest service
 slowest_service=$(cat "$input_file" | sort -n -k2 | tail -1)
         echo "slowest server :" "$fastest_service"
-
+#sort all entries by latency
+latancy_services=$(
