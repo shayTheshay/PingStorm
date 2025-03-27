@@ -20,6 +20,16 @@ arr["tiktok.com"]=89.1
 
 file_name_saved="ping_results.csv"
 
+max_value=0
+for val in "${arr[@]}"; do
+	val_int="${val%%.*}"
+	(( val_int > max_value )) && max_value=$val_int
+done
+
+bar_width=10
+scale=$(( max_value /bar_width ))
+(( scale == 0 )) && scale=1
+
 function output {
 	echo -e "${globe_with_meridians} PINGSTORM REPORT"
 	echo "-------------------------"
@@ -30,10 +40,17 @@ function output {
 
 	echo "Visual:"
 	# Template for looping over the list(might not be sorted list)
-	# add bar for latency 
-	for key in "${!arr[@]}"; do 
-		echo "$key | ${arr[$key]} ms" #It went in reverse please make sure order is correct
-	done | sort -n -k3
+	# add bar for latency
+
+	for key in "${!arr[@]}"; do
+		val="${arr[$key]}"
+		val_int="${val%%.*}"
+		bar_length=$(( val_int / scale ))
+
+		bar=$(eval "printf '█%.0s' {1..$bar_length}")
+		printf "%5.1f|%5s | %5s %5.1f \n" "$val" "$key" "$bar" "$val"
+	done | sort -n | cut -d'|' -f2-
+
 	echo -e "\n${page_facing_up} Results saved to $file_name_saved"
 }
 
