@@ -1,0 +1,5 @@
+google.com: 9.463
+facebook.com: 59.903
+tiktok.com: 11.749
+youtube.com: 10.614
+netflix.com: unreachable
