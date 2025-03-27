@@ -1,38 +1,31 @@
 #!/bin/bash
+. ./init_logging.sh
 
 # write headers & results
-function export_to_csv() {
-domains=("${!1}") # first arg: array of domains
-latencies=("${!2}") # second arf: array of latencies
-# file to store the exported results
- csv_file="latency_results.csv"
 
-# Create or overwite the CSV file with the headers
+results_file="ping_results.txt"
+
+csv_file="latency_results.csv"
+
+if [ ! -f "$results_file" ]; then
+	echo "Error"
+	PingStormLog 3 Error
+	exit 1
+fi
+
 echo "Domain,Latency (ms)" > "$csv_file"
 
-for ((i=0; i<${#domains[@]}; i++)); do
-# Append the domain and latency to the CSV file
-echo "${domains[i]},${latencies[i]}" >> "$csv_file"
-done
+while IFS= read -r line; do
+	echo "$line" >> "$csv_file"
+done < "$results_file"
 
 # Notify the user
-echo "Data has been exported to $csv_file"
+echo "Results has been exported to $csv_file"
+
+PingStormLog 1 CSV exported success
 
 # show the file
 cat "$csv_file"
-}
-
-
-# Example domains 
- domains=("google.com" "Facebook.com" "TikTok.com")
-
-# Example latency 
- latencies=("23.45" "26.33" "21.23")
-
-export_to_csv domains[@] latencies[@]
-
-
-
 
 
 
