@@ -48,7 +48,7 @@ case $flow_option in
     echo "Latest PingStorm service operations from log:" ; \
     if [[ -e /LogDir/PingStorm.log ]]; then
     tail -10 ./LogDir/PingStorm.log
-    else "So far no PingStorm log entries created."
+    else echo "So far no PingStorm log entries created."
     fi ; read ;;
  0 )
     exit 0 ;;
