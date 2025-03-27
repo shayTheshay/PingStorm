@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./init_logging.sh
 
 #values for emoji
 globe_with_meridians="\U1F310"
