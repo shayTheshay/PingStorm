@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./init_logging.sh
 
 targets=(
 "google.com"
@@ -18,8 +19,10 @@ for target in "${targets[@]}";do
     if [[ $? -eq 0 ]]; then
 	avg_latency=$(echo "$output" | grep -oP '([0-9]+\.[0-9]+)/([0-9]+\.[0-9]+)/([0-9]+\.[0-9]+)' | cut -d'/' -f2)
 	echo "$target: $avg_latency" >> "$output_file"
+	PingStormLog 1 PING $target success
     else
         echo "$target: unreachable" >> "$output_file"
+        PingStormLog 3 PING $target unreachable
     fi
 	
 done
