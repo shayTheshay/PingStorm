@@ -6,6 +6,7 @@ globe_with_meridians="\U1F310"
 check_mark_button="\U2705"
 sad_crying_emoji="\U1F622"
 page_facing_up="\U1F4C3"
+
 #general values
 report_number=5
 average_latency=60.1
@@ -13,6 +14,7 @@ fastest_service="google.com"
 slowest_service="tiktok.com"
 fastest_time=32.4
 slowest_time=89.1
+
 
 declare -A arr
 arr["google.com"]=32.4
@@ -49,7 +51,7 @@ function output {
 		bar_length=$(( val_int / scale ))
 
 		bar=$(eval "printf '█%.0s' {1..$bar_length}")
-		printf "%5.1f|%5s | %5s %5.1f \n" "$val" "$key" "$bar" "$val"
+		printf "%5.1f|%5s | %5s %5.1f \n" "$val" "$key" "$bar" "$val" #MIssing ms at the end, please fix
 	done | sort -n | cut -d'|' -f2-
 
 	echo -e "\n${page_facing_up} Results saved to $file_name_saved"
