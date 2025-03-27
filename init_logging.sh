@@ -8,7 +8,7 @@
 # At the beginning of any script where logging is required add  #
 #  the following after the shebang line:                        #
 #                                                               # 
-#  . ./.init_logging.sh                                         #
+#  . ./init_logging.sh                                         #
 #                                                               # 
 # Logging function call structure:                              #
 #                                                               # 
