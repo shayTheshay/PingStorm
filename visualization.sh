@@ -51,7 +51,7 @@ function output {
 		bar_length=$(( val_int / scale ))
 
 		bar=$(eval "printf '█%.0s' {1..$bar_length}")
-		printf "%5.1f|%5s | %5s %5.1f \n" "$val" "$key" "$bar" "$val" #MIssing ms at the end, please fix
+		printf "%5.1f|%5s | %5s %5.1f ms\n" "$val" "$key" "$bar" "$val" #MIssing ms at the end, please fix
 	done | sort -n | cut -d'|' -f2-
 
 	echo -e "\n${page_facing_up} Results saved to $file_name_saved"
