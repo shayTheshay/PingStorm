@@ -36,9 +36,8 @@ The manager has 6 functions:
 ### Picture for MainFlow 
 ![MainFlow](https://github.com/user-attachments/assets/ea2f17d0-dc57-464e-9ca2-a078569ca214)
 
-
 ### Picture for Visualization
-![visualization](https://github.com/user-attachments/assets/08efabff-ee8b-421a-8d24-157e31510fed)
+![visualization](https://github.com/user-attachments/assets/a502d1f8-f62b-4bc6-92a0-8c8c59cc695d)
 
 ## Noticable scripts
 1. **MainFlow.sh**   
