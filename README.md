@@ -65,11 +65,11 @@ The manager has 6 functions:
 ## Application Flow
 ```mermaid
 grapth TD;
-    A(MainFlow.sh)-->B(PingStormService.sh);
-    B-->C(export-csv.sh);
-    B-->D(PingExe.sh)
-    A-->E(analyzing_data.sh)
-    A-->F(visualization.sh)
+    A[MainFlow.sh]-->B[PingStormService.sh];
+    B-->C[export-csv.sh];
+    B-->D[PingExe.sh]
+    A-->E[analyzing_data.sh]
+    A-->F[visualization.sh]
 ```
 ## Collaborators
 
