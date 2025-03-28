@@ -72,9 +72,11 @@ The manager has 6 functions:
 # Usage example:                                                # 
 #                                                               # 
 # PingStormLog 2 PING x.com timeout                             #
-  
-    
-    * Log entries, created by invoking the logging function, are letting viewer know which script has issued the entry. For that the basename is used (precisely, calling basename with argument $0). This is working correctly even when the basename call is from any other script, which is running source (. command) to the script containing the logging function. In short, **the scope** of such source makes anything from the included code an **integral part of the calling script's shell**.
+
+
+2. **Calling script name detection**   
+
+    * Log entries, created by invoking the logging function, are letting viewer know which script has issued the entry. For that the basename system function is used (precisely, calling basename with argument $0). This is working correctly even when the basename call is from any other script, which is running source (. command) to the script containing the logging function. In short, **the scope** of such source makes anything from the included code an **integral part of the calling script's shell**.
 
 
 
