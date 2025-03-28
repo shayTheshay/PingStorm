@@ -11,6 +11,7 @@ Please choose from following options:
      2.) Stop PingStorm service
      3.) Review PingStorm service execution status
      4.) Show Pingstorm service latest log entries
+     5.) Visualize analysis output
      0.) Exit manager program
 
 For quitting manager, please choose 0."
@@ -47,6 +48,8 @@ case $flow_option in
  4 )
     echo "Latest PingStorm service operations from log:" ; \
     tail -10 ./LogDir/PingStorm.log ; read ;;
+ 5 )
+    ./visualization.sh ; read ;;
  0 )
     exit 0 ;;
 * )
