@@ -33,14 +33,10 @@ The manager has 6 functions:
 
 ***Picture will be updated a few days from now***
 
-
-
-### Picture for MainFlow
-![Alt text](/home/shay/Pictures/Screenshots/MainFlow.png) 
+### Picture for MainFlow 
 
 
 ### Picture for Visualization
-![Alt text](/home/shay/Pictures/Screenshots/visualization.png)
 
 ## Noticable scripts
 1. **MainFlow.sh**   
