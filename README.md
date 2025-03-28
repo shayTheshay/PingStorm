@@ -65,13 +65,11 @@ The manager has 6 functions:
     
     * Logging functionality will be implemented as a generic function, invoked from several independent scripts. Hence that logging function is maintained in a branch of its own, and saved in a script which will be **sourced (. command)**. Description was shared with rest of team members as per how to invoke it:
 
-# Logging function call structure:                              #
-#                                                               # 
-# PingStormLog {1|2|3} {<OPERATION>} {<DESTINATION>} {RESPONSE} #
-#                                                               # 
-# Usage example:                                                # 
-#                                                               # 
-# PingStormLog 2 PING x.com timeout                             #
+   ### Logging function call structure:                              ###
+   ### PingStormLog {1|2|3} {OPERATION} {DESTINATION} {RESPONSE}     ###
+   ###                                                               ### 
+   ### Usage example:                                                ### 
+   ### PingStormLog 2 PING x.com timeout                             ###
 
 
 2. **Calling script name detection**   
