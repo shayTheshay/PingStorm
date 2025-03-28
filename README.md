@@ -64,7 +64,7 @@ The manager has 6 functions:
 
 ## Application Flow
 ```mermaid
-grapth TD;
+graph TD;
     A[MainFlow.sh]-->B[PingStormService.sh];
     B-->C[export-csv.sh];
     B-->D[PingExe.sh]
