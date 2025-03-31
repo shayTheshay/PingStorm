@@ -59,6 +59,25 @@ The manager has 6 functions:
     * Can show different type messages(error, warning, info)
     * logs the information info a directory
 
+## Task code considerations
+
+1. **Logging function shell source**   
+    
+    * Logging functionality will be implemented as a generic function, invoked from several independent scripts. Hence that logging function is maintained in a branch of its own, and saved in a script which will be **sourced (. command)**. Description was shared with rest of team members as per how to invoke it:
+
+   ### Logging function call structure:                              ###
+   ### PingStormLog {1|2|3} {OPERATION} {DESTINATION} {RESPONSE}     ###
+   ###                                                               ### 
+   ### Usage example:                                                ### 
+   ### PingStormLog 2 PING x.com timeout                             ###
+
+
+2. **Calling script name detection**   
+
+    * Log entries, created by invoking the logging function, are letting viewer know which script has issued the entry. For that the basename system function is used (precisely, calling basename with argument $0). This is working correctly even when the basename call is from any other script, which is running source (. command) to the script containing the logging function. In short, **the scope** of such source makes anything from the included code an **integral part of the calling script's shell**.
+
+
+
 ## Application Flow
 ```mermaid
 graph TD;
