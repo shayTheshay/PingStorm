@@ -47,7 +47,10 @@ case $flow_option in
     fi ; read ;;
  4 )
     echo "Latest PingStorm service operations from log:" ; \
-    tail -10 ./LogDir/PingStorm.log ; read ;;
+    if [[ -f ./LogDir/PingStorm.log ]]; then
+    tail -10 ./LogDir/PingStorm.log
+    else echo "Nothing to present."
+    fi ; read ;;
  5 )
     ./visualization.sh ; read ;;
  0 )
