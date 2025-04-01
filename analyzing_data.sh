@@ -2,7 +2,7 @@
 #read the results script 
 result_file="ping_results.txt"
 sorted_file="sorted_results.txt"
-#check exist file - if not stop running#!/bin/bash
+#check exist file - if not stop running
 #read the results files
 result_file="ping_results.txt"
 sorted_file="sorted_results.txt"
