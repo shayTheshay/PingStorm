@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./init_logging.sh 
 #read the results script
 result_file="ping_results.txt"
 sorted_file="sorted_results.txt"
@@ -20,5 +21,11 @@ echo "slowest server :" "$slowest_service"
 #sort a list by latency and saved it in a file (sorted_file)
 echo "list by latency per response time :" "$sorted_file"
        cat "$sorted_file"
-
+#see what we got in our log file
+checked_domain=$(echo $fastest_service | awk '{FS=":"}{print $1}')
+checked_speed=$(echo $fastest_service | awk '{FS=":"}{print $2}')
+PingStormLog 1 $checked_domain $checked_speed
+checked_domain=$(echo $slowest_service | awk '{FS=":"}{print $1}')
+checked_speed=$(echo $slowest_service | awk '{FS=":"}{print $2}')
+PingStormLog 1 $checked_domain $checked_speed
 
