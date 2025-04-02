@@ -1,9 +1,5 @@
 #!/bin/bash
-#read the results script 
-result_file="ping_results.txt"
-sorted_file="sorted_results.txt"
-#check exist file - if not stop running
-#read the results files
+#read the results script
 result_file="ping_results.txt"
 sorted_file="sorted_results.txt"
 #check exist file - if not stop running
@@ -11,19 +7,18 @@ sorted_file="sorted_results.txt"
 echo "Error $result_file not found "
 exit 1
         fi
-#to create the list, I took only numbers lines: 
+#to create the list, I took only numbers lines:
 grep -v "unreachable" "$result_file" | sort -k2 -n > "$sorted_file"
 #Added unreachable to the end of the list:
-grep -v "unreachable" "$result_file" >> "$sorted_file"
+grep "unreachable" "$result_file" >> "$sorted_file"
 #show the fastest service
-fastest_service=$(cat "$result_file" | sort -n -k2 | head -1)
+fastest_service=$(grep -v "unreachable" "$result_file" | sort -k2 -n | head -1)
 echo "fastest server :" "$fastest_service"
 #show the slowest service
-slowest_service=$(cat "$result_file" | sort -n -k2 | tail -1)
+slowest_service=$(grep -v "unreachable" "$result_file" | sort -k2 -n | tail -1)
 echo "slowest server :" "$slowest_service"
-#sort a list by latency and saved it in a file (sorted_file.txt)
-sorted_file=$(cat "$result_file" | sort -k2 -n)
+#sort a list by latency and saved it in a file (sorted_file)
 echo "list by latency per response time :" "$sorted_file"
-       echo "$sorted_file"
+       cat "$sorted_file"
 
 
