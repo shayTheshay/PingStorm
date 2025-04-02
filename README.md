@@ -92,7 +92,7 @@ graph TD;
 Collaborating personnel include:
 
 - [Shay Solomon](https://www.linkedin.com/in/shay-solomon/)
-- imad tori
-- eyal golan gluck
-- dikla buchnik
+- Imad tori
+- Eyal golan gluck
+- Dikla buchnik
 - Lior 
