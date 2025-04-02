@@ -24,8 +24,8 @@ echo "list by latency per response time :" "$sorted_file"
 #see what we got in our log file
 checked_domain=$(echo $fastest_service | awk '{FS=":"}{print $1}')
 checked_speed=$(echo $fastest_service | awk '{FS=":"}{print $2}')
-PingStormLog 1 $checked_domain $checked_speed
+PingStormLog 1 "detect fastest" $checked_domain $checked_speed
 checked_domain=$(echo $slowest_service | awk '{FS=":"}{print $1}')
 checked_speed=$(echo $slowest_service | awk '{FS=":"}{print $2}')
-PingStormLog 1 $checked_domain $checked_speed
+PingStormLog 1 "detect slowest" $checked_domain $checked_speed
 
