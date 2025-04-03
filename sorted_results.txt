@@ -1,6 +1,8 @@
-Domain,Latency (ms)
+tiktok.com: 10.235
+google.com: 10.634
+youtube.com: 11.588
+facebook.com: 53.098
 google.com: 10.634
 facebook.com: 53.098
 tiktok.com: 10.235
 youtube.com: 11.588
-netflix.com: unreachable
