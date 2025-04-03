@@ -1,6 +1,29 @@
 #!/bin/bash
 . ./init_logging.sh
 
+file_name="sorted_results.txt"
+declare -A sum_number
+declare -A total_count 
+function getValue { 
+        sorted_file=$(cat "$file_name")
+        if [[ $? -eq 0 ]]; then
+                while IFS= read -r line; do
+			num=$(echo $line | cut -d' ' -f2)
+			if [[ $num =~ ^[0-9]+\.[0-9]+$ ]]; then
+				name=$(echo $line | cut -d':' -f1)
+				current_sum=${sum_number[$name]:-0}
+				sum_number["$name"]=$(echo "$current_sum + $num" | bc)
+				total_count["$name"]=$((total_count["$name"]+1))
+			fi
+                done < "$file_name"
+	else
+                echo "Fail"
+        fi
+}
+
+getValue
+
+
 #values for emoji
 globe_with_meridians="\U1F310"
 check_mark_button="\U2705"
@@ -8,18 +31,32 @@ sad_crying_emoji="\U1F622"
 page_facing_up="\U1F4C3"
 
 #general values
-report_number=5
-average_latency=60.1
-fastest_service="google.com"
-slowest_service="tiktok.com"
-fastest_time=32.4
-slowest_time=89.1
-
-
+report_number=$(cat $file_name | sort -k1 | uniq | wc -l)
 declare -A arr
-arr["google.com"]=32.4
-arr["facebook.com"]=58.7
-arr["tiktok.com"]=89.1
+
+for key in "${!total_count[@]}"; do
+        arr["$key"]=$(echo "scale=3; ${sum_number[$key]} / ${total_count[$key]}" | bc)
+done
+
+average_latency=60.1
+fastest_service=$(echo "${!arr[@]}" | awk '{print $1}')
+slowest_service=$(echo "${!arr[@]}" | awk '{print $1}')
+fastest_time=$(echo "${arr[@]}" | awk '{print $1}')
+slowest_time=$(echo "${arr[@]}" | awk '{print $1}')
+sum=0.0
+
+for key in "${!arr[@]}"; do
+	if (( $(echo "${arr[$key]} > $slowest_time" | bc -l) )); then
+		slowest_time=${arr[$key]}
+		slowest_service=$key
+	fi
+	if (( $(echo "${arr[$key]} < $slowest_time" | bc -l) )); then
+		fastest_time=${arr[$key]}
+		fastest_service=$key
+	fi
+	sum=$(echo "$sum + ${arr[$key]}" | bc -l)
+done
+average_latency=$(echo "scale=3; $sum / $report_number" | bc)
 
 file_name_saved="ping_results.csv"
 
@@ -51,7 +88,7 @@ function output {
 		bar_length=$(( val_int / scale ))
 
 		bar=$(eval "printf '█%.0s' {1..$bar_length}")
-		printf "%5.1f|%5s | %5s %5.1f ms\n" "$val" "$key" "$bar" "$val" #MIssing ms at the end, please fix
+		printf "%5.1f|%5s | %5s %5.3f ms\n" "$val" "$key" "$bar" "$val" #MIssing ms at the end, please fix
 	done | sort -n | cut -d'|' -f2-
 
 	echo -e "\n${page_facing_up} Results saved to $file_name_saved"
