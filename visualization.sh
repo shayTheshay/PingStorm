@@ -14,10 +14,14 @@ function getValue {
 				current_sum=${sum_number[$name]:-0}
 				sum_number["$name"]=$(echo "$current_sum + $num" | bc)
 				total_count["$name"]=$((total_count["$name"]+1))
+			else
+				echo "The file is not in the needed format please try deleting what is in sorted_results.txt and run the Mainflow with the first option"
+				exit 0
 			fi
                 done < "$file_name"
 	else
-                echo "Fail"
+                echo "The file does not exist, Please run the MainFlow and select the first option"
+		exit 0
         fi
 }
 
