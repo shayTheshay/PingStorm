@@ -31,10 +31,8 @@ The manager has 6 functions:
 5. Visualize the values for each service, slowest and fastest
 0. Press 0 to exit the code (or ctrl + c)
 
-***Picture will be updated a few days from now***
-
 ### Picture for MainFlow 
-![MainFlow](https://github.com/user-attachments/assets/ea2f17d0-dc57-464e-9ca2-a078569ca214)
+![main_flow](https://github.com/user-attachments/assets/1026ac3d-a8da-4845-b22a-f7c67801ca40)
 
 ### Picture for Visualization
 ![visualization](https://github.com/user-attachments/assets/a502d1f8-f62b-4bc6-92a0-8c8c59cc695d)
